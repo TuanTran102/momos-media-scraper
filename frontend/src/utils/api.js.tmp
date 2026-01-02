@@ -1,0 +1,23 @@
+import axios from 'axios';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const AUTH_HEADER = 'Basic ' + btoa('admin:admin');
+
+const authClient = axios.create({
+    baseURL: API_URL,
+    headers: {
+        Authorization: AUTH_HEADER
+    }
+});
+
+const publicClient = axios.create({
+    baseURL: API_URL
+});
+
+export const scrapeMedia = (urls) => {
+    return authClient.post('/api/scrape', { urls });
+};
+
+export const fetchMediaItems = (params) => {
+    return publicClient.get('/api/public/media', { params });
+};

@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model ScrapeJob {
+  id        String   @id @default(uuid())
+  url       String
+  type      String   @default("ALL")
+  status    String   @default("PENDING")
+  created_at DateTime @default(now()) @map("created_at")
+  updated_at DateTime @updatedAt @map("updated_at")
+  error     String?
+
+  @@map("scrape_jobs")
+}
+
+model MediaItem {
+  id        String   @id @default(uuid())
+  url       String
+  type      String
+  source_url String  @map("source_url")
+  created_at DateTime @default(now()) @map("created_at")
+
+  @@unique([url, type, source_url])
+  @@map("media_items")
+}
