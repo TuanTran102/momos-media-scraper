@@ -41,4 +41,4 @@
 
 ### API Endpoints
 - `POST /api/scrape`: `{ urls: string[] }` - Submit jobs.
-- `GET /api/public/media`: `?page=1&limit=20&type=IMAGE|VIDEO&search=...` - Get media.
+- `GET /api/public/media?page=1&limit=20&type=IMAGE|VIDEO&search=...` - Get media.
